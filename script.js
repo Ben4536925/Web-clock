@@ -3,28 +3,24 @@ const intervalID = setInterval(refreshclock, 10);
 let s = 0;
 //const dateObjectName = new Date([parameters]);
 let fullscreen_toggle = false;
-// 要素を取得
-const timeElement = document.getElementById('time');
-const dateElement = document.querySelector('.date');
 
-document.getElementById("setting,2").addEventListener("input", changefontsize);
+
+/*document.getElementById("setting,2").addEventListener("input", changefontsize);
 
 const slider = document.getElementById("setting,2");
 
 slider.addEventListener("input", () => {
     changefontsize();
 });
-
+*/
 function changefontsize() {
     //alert("ha");
     let fontsize = document.getElementById("setting,2").value;
-    //document.getElementById("time").style.fontSize = fontsize + "px";
-    timeElement.style.fontSize = fontsize + "px";
+    document.getElementById("time").style.fontSize = fontsize + "px";
+    
     let fontsize2 = document.getElementById("setting,2").value / 4;
-    //document.getElementById("date").style.fontSize = fontsize2 + "px";
-    dateElement.style.fontSize = fontsize2 + "px";
+    document.getElementById("date").style.fontSize = fontsize2 + "px";
 }
-
 
 function fullscreen() {
 
