@@ -18,21 +18,17 @@ body,
 	
 }
 */
-h1 {
+.time {
 	color: var(--md-sys-color-primary);
 	font-size: 200px;
 	font-family: "Akshar";
 	font-weight: 100;
 }
 
-h2 {
+.date {
 	color: var(--md-sys-color-primary);
 	font-family: "Akshar";
 	font-weight: 100;
 	font-size: 50px;
-}
-
-.settings {
-	display: none;
 }
 

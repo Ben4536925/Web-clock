@@ -1,7 +1,30 @@
-var x = 0
-const intervalID = setInterval(refreshclock, 10)
-let s = 0
-const dateObjectName = new Date([parameters]);
+var x = 0;
+const intervalID = setInterval(refreshclock, 10);
+let s = 0;
+//const dateObjectName = new Date([parameters]);
+let fullscreen_toggle = false;
+// 要素を取得
+const timeElement = document.getElementById('time');
+const dateElement = document.querySelector('.date');
+
+document.getElementById("setting,2").addEventListener("input", changefontsize);
+
+const slider = document.getElementById("setting,2");
+
+slider.addEventListener("input", () => {
+    changefontsize();
+});
+
+function changefontsize() {
+    //alert("ha");
+    let fontsize = document.getElementById("setting,2").value;
+    //document.getElementById("time").style.fontSize = fontsize + "px";
+    timeElement.style.fontSize = fontsize + "px";
+    let fontsize2 = document.getElementById("setting,2").value / 4;
+    //document.getElementById("date").style.fontSize = fontsize2 + "px";
+    dateElement.style.fontSize = fontsize2 + "px";
+}
+
 
 function fullscreen() {
 
@@ -10,11 +33,14 @@ function fullscreen() {
     if (!document.fullscreenElement) {
         document.body.requestFullscreen();
         fullscreen_button.innerHTML = "fullscreen_exit"
+        document.getElementById("tabs").style.display = "none";
     } else {
         document.exitFullscreen();
         fullscreen_button.innerHTML = "fullscreen"
+        document.getElementById("tabs").style.display = null;
     }
 }
+
 function refreshclock() {
     const now = new Date();
     let HH = now.getHours();
@@ -34,11 +60,18 @@ function refreshclock() {
         date.innerHTML = now.toLocaleDateString('ja-JP');
         s = ss
     }
+
+    if (document.fullscreenElement) {
+
+        fullscreen_button.innerHTML = "fullscreen_exit"
+        document.getElementById("tabs").style.display = "none";
+    } else {
+        fullscreen_button.innerHTML = "fullscreen"
+        document.getElementById("tabs").style.display = null;
+    }
 }
 
-function a() {
-    aa("#ff0000")
-}
+
 
 /*function aa(color) {
     colorElemnt.style.setProperty("--md-sys-color-surface", color);
@@ -52,11 +85,24 @@ function home_tab() {
 function alarm_tab() {
     /*alert("It's works!");*/
     hideAll();
+    document.getElementById("alarm").style.display = null;
+}
+
+function timer_tab() {
+    hideAll();
+    document.getElementById("timer").style.display = null;
+}
+
+function settings_tab() {
+    hideAll();
+    document.getElementById("settings").style.display = null;
 }
 
 function hideAll() {
     document.getElementById("home").style.display = "none";
-    /*document.getElementById("alarm").style.display = "none";*/
+    document.getElementById("alarm").style.display = "none";
+    document.getElementById("timer").style.display = "none";
+    document.getElementById("settings").style.display = "none";
 }
 /*tabs.addEventListener('change', (event: Event) => {
   if (event.target.activeTabIndex === 2) {

@@ -87,8 +87,51 @@
             align-items: center;
             justify-content: center;
         ">
-            <h1 id="time">--:--:--</h1>
-            <h2 id="date">----:--:--</h2>
+            <h1 class="time" id="time">--:--:--</h1>
+            <h2 class="date" id="date">----:--:--</h2>
+        </div>
+    </div>
+    <div class="alarm" id="alarm" style="display: none;">
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        ">
+            <h1>Alarm</h1>
+        </div>
+    </div>
+    <div class="timer" id="timer" style="display: none;">
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        ">
+            <h1>Timer</h1>
+        </div>
+    </div>
+
+    <div class="settings" id="settings" style="display: none;">
+        <div style="max-width: 500px;align-items: center;justify-content: center;margin: auto;">
+            <md-list>
+                <md-list-item>
+                    テキストサイズを自動調整
+                    <md-switch disabled  slot="end"></md-switch>
+                </md-list-item>
+                <md-list-item>
+                    テキストサイズ
+                    <md-slider id="setting,2"  slot="end" min="10" max="300" value="200"></md-slider>
+                </md-list-item>
+                <md-list-item>
+                    <md-primary-tab inline-icon onclick="changefontsize()">
+                        <span class="material-symbols-rounded">
+                            settings
+                        </span>
+                        適用
+                    </md-primary-tab>
+                </md-list-item>
+            </md-list>
         </div>
     </div>
 </body>
