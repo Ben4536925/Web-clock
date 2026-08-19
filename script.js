@@ -3,7 +3,21 @@ const intervalID = setInterval(refreshclock, 10);
 let s = 0;
 //const dateObjectName = new Date([parameters]);
 let fullscreen_toggle = false;
+const root = document.documentElement;
+let fontsize = localStorage.getItem("fontsize");
+if (fontsize == null) {
+    fontsize = 25;
+}
+let color = localStorage.getItem("color");
+if (color == null) {
+    color = 0;
+}
 
+    document.getElementById("setting,1").value = fontsize;
+    document.getElementById("setting,2").value = color;
+
+    apply_settings();
+//let fontsize = document.getElementById("setting,1").value;
 
 /*document.getElementById("setting,2").addEventListener("input", changefontsize);
 
@@ -13,13 +27,20 @@ slider.addEventListener("input", () => {
     changefontsize();
 });
 */
-function changefontsize() {
+
+function apply_settings() {
     //alert("ha");
-    let fontsize = document.getElementById("setting,2").value;
-    document.getElementById("time").style.fontSize = fontsize + "px";
-    
-    let fontsize2 = document.getElementById("setting,2").value / 4;
-    document.getElementById("date").style.fontSize = fontsize2 + "px";
+    let fontsize = document.getElementById("setting,1").value;
+    document.getElementById("time").style.fontSize = fontsize + "vh";
+
+    let fontsize2 = fontsize / 4;
+    document.getElementById("date").style.fontSize = fontsize2 + "vh";
+    localStorage.setItem("fontsize", fontsize);
+    //alert("ha");
+    let color = document.getElementById("setting,2").value;
+    root.style.setProperty("--md-sys-color-primary", "hsl(" + document.getElementById("setting,2").value + ", 34.43%, 47.84%)");
+    root.style.setProperty("--md-sys-color-surface", "hsl(" + document.getElementById("setting,2").value + ", 100%, 98.43%)");
+    localStorage.setItem("color", document.getElementById("setting,2").value);
 }
 
 function fullscreen() {
@@ -38,24 +59,19 @@ function fullscreen() {
 }
 
 function refreshclock() {
-    const now = new Date();
+    let now = new Date();
     let HH = now.getHours();
     let mm = now.getMinutes();
     let ss = now.getSeconds();
     mm = String(mm);
-
     ss = String(ss);
-    if (mm.length === 1) {
-        mm = "0" + mm
-    };
-    if (ss.length === 1) {
-        ss = "0" + ss
-    };
-    if (s != ss) {
-        time.innerHTML = HH + ":" + mm + ":" + ss;
-        date.innerHTML = now.toLocaleDateString('ja-JP');
-        s = ss
-    }
+    //ms = String(ms);
+    mm = mm.padStart(2, "0");
+    ss = ss.padStart(2, "0");
+    let activetab = document.getElementById("tabs").activeindex;
+    time.innerHTML = HH + ":" + mm + ":" + ss;
+    //time.innerHTML = activetab;
+    date.innerHTML = now.toLocaleDateString('ja-JP');
 
     if (document.fullscreenElement) {
 
@@ -67,8 +83,6 @@ function refreshclock() {
     }
 }
 
-
-
 /*function aa(color) {
     colorElemnt.style.setProperty("--md-sys-color-surface", color);
 }*/
@@ -78,15 +92,9 @@ function home_tab() {
     document.getElementById("home").style.display = null;
 }
 
-function alarm_tab() {
-    /*alert("It's works!");*/
+function stopwatch_tab() {
     hideAll();
-    document.getElementById("alarm").style.display = null;
-}
-
-function timer_tab() {
-    hideAll();
-    document.getElementById("timer").style.display = null;
+    document.getElementById("stopwatch").style.display = null;
 }
 
 function settings_tab() {
@@ -96,23 +104,6 @@ function settings_tab() {
 
 function hideAll() {
     document.getElementById("home").style.display = "none";
-    document.getElementById("alarm").style.display = "none";
-    document.getElementById("timer").style.display = "none";
+    document.getElementById("stopwatch").style.display = "none";
     document.getElementById("settings").style.display = "none";
 }
-/*tabs.addEventListener('change', (event: Event) => {
-  if (event.target.activeTabIndex === 2) {
-    // ... perform logic only if index of selected item is 2.
-    alert("ha")
-  }
-});
-*/
-/*window.addEventListener('load', function () {
-    document.getElementById("content1").addEventListener('click', logPosition);
-});
- 
-function logPosition(event) {
-    console.log("clientX: " + event.clientX);
-    console.log("clientY: " + event.clientY);
-}  */
-

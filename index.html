@@ -1,4 +1,8 @@
 <head>
+    <meta charset="UTF-8">
+    <title>Web Clock</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Akshar:wght@300..700&display=swap" rel="stylesheet">
@@ -21,7 +25,7 @@
 
         document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
     </script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
     <link rel="stylesheet" href="style.css" type="text/css">
 
@@ -29,90 +33,89 @@
 </head>
 
 <body>
-    <div style="visibility: visible;">
-        <md-tabs id="tabs" activeindex="0">
-            <md-primary-tab inline-icon onclick="home_tab()">
-                <span class="material-symbols-rounded">
-                    home
-                </span>
-                ホーム
-            </md-primary-tab>
-            <md-primary-tab inline-icon onclick="alarm_tab()">
-                <span class="material-symbols-rounded">
-                    alarm
-                </span>
-                アラーム
-            </md-primary-tab>
+    <div style="width: 100%;">
 
-            <md-primary-tab inline-icon onclick="timer_tab()">
-                <span class="material-symbols-rounded">
-                    timer
-                </span>
-                タイマー
-            </md-primary-tab>
-            <md-primary-tab inline-icon onclick="settings_tab()">
-                <span class="material-symbols-rounded">
-                    settings
-                </span>
-                設定
-            </md-primary-tab>
-        </md-tabs>
-        <md-outlined-button onclick="fullscreen()">
-            <span id="fullscreen_button" class="material-symbols-outlined">
-                fullscreen
-            </span>
-        </md-outlined-button>
+        <div style="position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;">
+            <div class="home" id="home" style="display: null;">
+                <div class="clock_frame">
+                    <h1 class="time" id="time">--:--:--</h1>
+                    <h2 class="date" id="date">----:--:--</h2>
+                </div>
+            </div>
+            <div class="stopwatch" id="stopwatch" style="display: none;">
+                <div class="clock_frame">
+                    <h1 class="stopwatch" id="stopwatch">00:00.000</h1>
+                    <div>
+                        <md-outlined-button inline-icon onclick="start_stopwatch()">
+                            <span slot="icon" style="width: 24px; height: 24px;" class="material-symbols-rounded">
+                                play_arrow
+                            </span>
 
-    </div>
-    <div class="home" id="home" style="display: null;">
-        <div style="
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        ">
-            <h1 class="time" id="time">--:--:--</h1>
-            <h2 class="date" id="date">----:--:--</h2>
-        </div>
-    </div>
-    <div class="alarm" id="alarm" style="display: none;">
-        <div style="
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        ">
-            <h1>Alarm</h1>
-        </div>
-    </div>
-    <div class="timer" id="timer" style="display: none;">
-        <div style="
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        ">
-            <h1>Timer</h1>
-        </div>
-    </div>
+                            開始
+                        </md-outlined-button>
 
-    <div class="settings" id="settings" style="display: none;">
-        <div style="max-width: 500px;align-items: center;justify-content: center;margin: auto;">
-            <md-list>
-                <md-list-item>
-                    テキストサイズを自動調整
-                    <md-switch disabled slot="end"></md-switch>
-                </md-list-item>
-                <md-list-item>
-                    テキストサイズ
-                    <md-slider id="setting,2" slot="end" min="10" max="300" value="200"></md-slider>
-                </md-list-item>
-                <md-list-item>
-                    <md-outlined-button inline-icon onclick="changefontsize()">
-                        適用
-                    </md-outlined-button>
-                </md-list-item>
-            </md-list>
+                        <md-outlined-button inline-icon onclick="reset_stopwatch()">
+                            <span slot="icon" style="width: 24px; height: 24px;" class="material-symbols-rounded">
+                                restart_alt
+                            </span>
+                            <span>リセット</span>
+                        </md-outlined-button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings" id="settings"
+                style="display: none; position: absolute; top: 100px; left: 0px; width: 100%">
+                <div style="max-width: 500px;align-items: center;justify-content: center;margin: auto;">
+                    <md-list>
+                        <md-list-item>
+                            テキストサイズ
+                            <md-slider id="setting,1" slot="end" min="5" max="100" value="25"></md-slider>
+                        </md-list-item>
+                        <md-list-item>
+                            色合い
+                            <md-slider id="setting,2" slot="end" min="0" max="360" value="0"></md-slider>
+                        </md-list-item>
+                        <md-list-item>
+                            <md-outlined-button inline-icon onclick="apply_settings()">
+                                適用
+                            </md-outlined-button>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+        </div>
+
+        <div style="visibility: visible; position: absolute; top: 0px; left: 0px; width: 100%">
+            <div>
+                <md-tabs id="tabs" activeindex="0">
+                    <md-primary-tab inline-icon onclick="home_tab()">
+                        <span class="material-symbols-rounded">
+                            home
+                        </span>
+                        ホーム
+                    </md-primary-tab>
+                    <md-primary-tab inline-icon onclick="stopwatch_tab()">
+                        <span class="material-symbols-rounded">
+                            timer
+                        </span>
+                        ストップウォッチ
+                    </md-primary-tab>
+                    <md-primary-tab inline-icon onclick="settings_tab()">
+                        <span class="material-symbols-rounded">
+                            settings
+                        </span>
+                        設定
+                    </md-primary-tab>
+            </div>
+            <div>
+                </md-tabs>
+                <md-outlined-button onclick="fullscreen()">
+                    <span id="fullscreen_button" class="material-symbols-outlined">
+                        fullscreen
+                    </span>
+                </md-outlined-button>
+            </div>
         </div>
     </div>
 </body>
