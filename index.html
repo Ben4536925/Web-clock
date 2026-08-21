@@ -6,10 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Akshar:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded&icon_names=fullscreen,fullscreen_exit,home,pause,play_arrow,restart_alt,settings,timer" />
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script type="importmap">
@@ -46,11 +43,12 @@
                 <div class="clock_frame">
                     <div style="display: flex;align-items: baseline;">
                         <h1 class="stopwatch" id="stopwatch_time">0:00</h1>
-                        <h2 class="stopwatch_ms" id="stopwatch_ms"style="width: 100px;">.00</h2>
+                        <h2 class="stopwatch_ms" id="stopwatch_ms" style="width: 100px;">.00</h2>
                     </div>
                     <div>
                         <md-outlined-button inline-icon onclick="start_stop_stopwatch()">
-                            <span slot="icon" id="play-button" style="width: 24px; height: 24px;" class="material-symbols-rounded">
+                            <span slot="icon" id="play-button" style="width: 24px; height: 24px;"
+                                class="material-symbols-rounded">
                                 play_arrow
                             </span>
 
@@ -58,7 +56,8 @@
                         </md-outlined-button>
 
                         <md-outlined-button inline-icon onclick="reset_stopwatch()">
-                            <span slot="icon" id="reset-button" style="width: 24px; height: 24px;" class="material-symbols-rounded">
+                            <span slot="icon" id="reset-button" style="width: 24px; height: 24px;"
+                                class="material-symbols-rounded">
                                 restart_alt
                             </span>
                             <span>リセット</span>
@@ -114,7 +113,7 @@
             <div>
                 </md-tabs>
                 <md-outlined-button onclick="fullscreen()">
-                    <span id="fullscreen_button" class="material-symbols-outlined">
+                    <span id="fullscreen_button" class="material-symbols-rounded">
                         fullscreen
                     </span>
                 </md-outlined-button>
