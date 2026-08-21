@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <title>Web Clock</title>
     <link rel="icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon-180x180.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Akshar:wght@300..700&display=swap" rel="stylesheet">
@@ -44,18 +44,21 @@
             </div>
             <div class="stopwatch" id="stopwatch" style="display: none;">
                 <div class="clock_frame">
-                    <h1 class="stopwatch" id="stopwatch">00:00.000</h1>
+                    <div style="display: flex;align-items: baseline;">
+                        <h1 class="stopwatch" id="stopwatch_time">0:00</h1>
+                        <h2 class="stopwatch_ms" id="stopwatch_ms"style="width: 100px;">.00</h2>
+                    </div>
                     <div>
-                        <md-outlined-button inline-icon onclick="start_stopwatch()">
-                            <span slot="icon" style="width: 24px; height: 24px;" class="material-symbols-rounded">
+                        <md-outlined-button inline-icon onclick="start_stop_stopwatch()">
+                            <span slot="icon" id="play-button" style="width: 24px; height: 24px;" class="material-symbols-rounded">
                                 play_arrow
                             </span>
 
-                            開始
+                            <span id="play-button-text">開始</span>
                         </md-outlined-button>
 
                         <md-outlined-button inline-icon onclick="reset_stopwatch()">
-                            <span slot="icon" style="width: 24px; height: 24px;" class="material-symbols-rounded">
+                            <span slot="icon" id="reset-button" style="width: 24px; height: 24px;" class="material-symbols-rounded">
                                 restart_alt
                             </span>
                             <span>リセット</span>

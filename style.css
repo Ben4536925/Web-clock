@@ -47,5 +47,12 @@ body,
 	font-size: 25vh;
 	font-family: "Akshar";
 	font-weight: 100;
-	height: 25vh;
+	/* height: 25px; */
+}
+.stopwatch_ms{
+	color: var(--md-sys-color-primary);
+	font-size: 6.25vh;
+	font-family: "Akshar";
+	font-weight: 100;
+	/* height: 25px; */
 }
